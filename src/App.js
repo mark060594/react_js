@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import NameComponent from './components/NameComponent';
-import Calculator from './components/Calculator';
+
+import Counter from './components/Counter/index';
+import { Navbar } from './components/Navbar';
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+         
         </a>
-        <NameComponent firstName='Marco' lastName= 'Fernández'/>
-        <Calculator num1={2} num2={3} operator='/' />
+       
+        <Counter />
+        <Navbar />
+        
       </header>
     </div>
   );

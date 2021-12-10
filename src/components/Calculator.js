@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 export const Calculator = ({num1, num2, operator}) => {
     let resultado = 0;
