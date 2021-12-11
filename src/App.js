@@ -3,6 +3,7 @@ import './App.css';
 
 import Counter from './components/Counter/index';
 import { Navbar } from './components/Navbar';
+import { DinamicNavbar } from './components/DinamicNavBar';
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
         </a>
        
         <Counter />
-        <Navbar />
+        <DinamicNavbar/>
+        {/* <Navbar /> */}
+        
         
       </header>
     </div>

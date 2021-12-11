@@ -30,10 +30,10 @@ export const Navbar = () => {
 			</ul>
         <div>
             
-            
+          
         </div>    
             <div> {(active === 1) ? <p> El 1 </p> : null  }   </div>
-            <div> {(active === 2) ? <p> El 2  </p> : null  }   </div>
+            <div> {(active === 2) ? <p> El 2 </p> : null  }   </div>
             <div> {(active === 3) ? <p> El 3 </p> : null  }   </div>
 		</div>
 	);
