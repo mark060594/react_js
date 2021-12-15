@@ -1,0 +1,25 @@
+ [
+
+    {
+        "id":1,
+        "name": "Marco",
+        "lastName": "Fernandez"
+    },
+    {
+        "id":2,
+        "name": "Selene",
+        "lastName": "Chavez"
+    },
+    {
+        "id":3,
+        "name": "Omar",
+        "lastName": "Mijangos"
+    },
+    {
+        "id":4,
+        "name": "Odon",
+        "lastName": "Balan"
+    }
+
+
+]
