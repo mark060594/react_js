@@ -1,69 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 import { useEffect, useState } from "react";
 
-import Counter from './components/Counter/index';
-import { Navbar } from './components/Navbar/index';
-import { DinamicNavbar } from './components/DinamicNavBar';
-import UserName from "./components/UserName";
-import CardCharacter from './components/CardCharacter';
+// Components
+import CardCharacter from "./components/CardCharacter";
+
+// Services
+import { listCharacters } from "./services/character";
 
 function App() {
+	const [characters, setCharacters] = useState([]);
+	const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [users, setUsers] = useState([]);
-  const [character, setCharacter] = useState([]);
-
-
-
-  useEffect(() => {
-		/* const getUsers = async () => {
-			const response = await fetch("users.json");
-			console.table(response);
-			const data = await response.json();
-			console.log(data);
-			setUsers(data); */
-
-      const getCharacter = async () => {
-        const response = await fetch("https://rickandmortyapi.com/api/character");
-        console.table(response);
-        const data = await response.json();
-        console.log(data);
-        const arrayData = Object.values(data.results)
-        setCharacter(arrayData);
-        
-
+	useEffect(() => {
+		const list = async () => {
+			const { results, info } = await listCharacters();
+			setCharacters(results);
+			setData(info);
+      setIsLoading(false);
 		};
-   /*  getUsers(); */
-    getCharacter();
-		/* console.log(character.results,'character'); */
-
+		list();
 	}, []);
 
-  console.log(character,'character');
- const characterUI = character.map(({id, name, status, species, image }) => (
-		<CardCharacter key={id} name={name} status={status} species={species} image={image} />
-	));
+	const handleClick = async (action) => {
+    setIsLoading(true);
+		if (action === "next" && data.next != null) {
+			const page = data.next.split("?")[1];
+			const { results, info } = await listCharacters(page);
+			setCharacters(results);
+			setData(info);
+		}
+
+    if (action === "prev" && data.prev != null) {
+			const page = data.prev.split("?")[1];
+			const { results, info } = await listCharacters(page);
+			setCharacters(results);
+			setData(info);
+		}
+    setIsLoading(false);
+	};
+
+  const hasPrevLink = data.prev ? true : false;
+	const hasNextLink = data.next ? true : false;
 
 
-  /* const usersUI = users.map(({ id, firstName, lastName }) => (
-		<UserName key={id} firstName={firstName} lastName={lastName} />
-	));
- */
-  return (
+	console.log(data);
 
-    <div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				{/* <Navbar/> */}
-        
-        <div className='main-cards-container'>
-          {characterUI}
-        </div>
-        
-				{/* {usersUI} */}
-			</header>
+	return (
+		<div className="App">
+			<div className="fixed-container">
+				<button onClick={() => handleClick("next")} className="btn">
+					Next
+				</button>
+        <button onClick={() => handleClick("prev")} className="btn">
+					Prev
+				</button>
+			</div>
+			{characters.map(({ id, image, name, species, status }) => (
+				<CardCharacter
+					key={id}
+					image={image}
+					name={name}
+					species={species}
+					status={status}
+				/>
+			))}
 		</div>
-  );
+	);
 }
 
 export default App;
