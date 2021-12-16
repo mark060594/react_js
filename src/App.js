@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 // Components
 import CardCharacter from "./components/CardCharacter";
+import { CreditCard } from "./components/CreditCard";
 
 // Services
 import { listCharacters } from "./services/character";
@@ -48,7 +49,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<div className="fixed-container">
+		{/* 	<div className="fixed-container">
 				<button onClick={() => handleClick("next")} className="btn">
 					Next
 				</button>
@@ -64,7 +65,9 @@ function App() {
 					species={species}
 					status={status}
 				/>
-			))}
+			))} */}
+
+      <CreditCard/>
 		</div>
 	);
 }
