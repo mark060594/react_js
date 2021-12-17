@@ -1,6 +1,6 @@
 import { BASE_URL } from "../util/constants";
 
-const USERS_PATH = "users.jso";
+const USERS_PATH = "users.json";
 
 const createUser = async (data) => {
 	const response = await fetch(`${BASE_URL}${USERS_PATH}`, {
@@ -14,4 +14,10 @@ const createUser = async (data) => {
 	return await response.json();
 };
 
-export { createUser };
+
+const getUser = async (data) => {
+	const response = await fetch(`${BASE_URL}${USERS_PATH}`);
+	return await response.json();
+};
+
+export {createUser ,getUser };
