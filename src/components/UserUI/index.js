@@ -1,14 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 //Styles 
 
 
 
-function UserUI({ firstName, lastName }) {
+function UserUI({ id, firstName, lastName }) {
+
+	const navigate = useNavigate();
+	
 	return (
 		<ul>
 
-            <li>  
+            <li onClick={(e) => navigate(`/users/${id}`)}>  
                 {firstName} {lastName}
             </li>
             

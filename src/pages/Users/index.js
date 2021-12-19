@@ -1,58 +1,26 @@
-import React, {useState, useEffect} from "react";
-import UserUI from "../../components/UserUI";
-import { getUser } from "../../services/users";
+import React from "react";
 
+import { Link, Outlet } from "react-router-dom";
 
-
-
-	export default function Users() {
-
-		const [user, setUser] = useState([]);	
-
-
-	
-
-	 useEffect(() => {
-
-		const runFetch = async() => {
-
-			const data = await getUser();
-			const parseData = Object.keys(data).map((key) => {
-				const { firstName, lastName } = data[key];
-
-				return {
-					id: key,
-					firstName,
-					lastName
-				}
-			});
-			setUser(parseData);
-			
-	  }
-
-	  runFetch();
-
-	 },[])
-	 
-
-	
-	
-
-
-const userUI = user.map(({ firstName, lastName }) => (
-	<UserUI  firstName={firstName} lastName={lastName} />
-));
-
+export default function Users() {
 	return (
+		<>
+			<div className="content">
+				<h1>Users screen</h1>
+				<Outlet />
+			</div>
+			<div className="aside">
+				<nav className="side-nav">
+					<Link className="link" to="">
+						List users
+					</Link>
+					<Link className="link" to="newUsers">
+						Create user
+					</Link>
+				
 
-		<div>
-				{userUI}
-		</div>
-	)
-
-	
-	
-
-
-			
+				</nav>
+			</div>
+		</>
+	);
 }

@@ -8,16 +8,24 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Users from "./pages/Users";
 import UsersNew from './pages/UsersNew/index';
+import Home from "./pages/Home";
+import UserDetail from "./pages/UserDetails/index";
+import UsersList from "./pages/UserList/index"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
 
       <Routes>
-          <Route path='/' element={<App />}/>
-          <Route path='/users' element={<Users />}/>
-          <Route path='/usersNew' element={<UsersNew />}/>
-
+          <Route path="*" element={<h1>NOT FOUND!</h1>} />
+          <Route path='/' element={ <App /> }>
+            <Route index element={<Home />} />
+            <Route path='/users' element={<Users />} >
+                <Route index  element={<UsersList />} />
+                <Route path='newUsers' element={<UsersNew />}/>
+                <Route path=":userID" element={<UserDetail />} />
+            </Route>  
+          </Route>
       </Routes>
       
     </BrowserRouter>
@@ -30,3 +38,5 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+

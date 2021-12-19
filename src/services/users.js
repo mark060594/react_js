@@ -15,9 +15,16 @@ const createUser = async (data) => {
 };
 
 
-const getUser = async (data) => {
+const getUsers = async () => {
 	const response = await fetch(`${BASE_URL}${USERS_PATH}`);
 	return await response.json();
 };
 
-export {createUser ,getUser };
+
+const getUser = async (id) => {
+	const response = await fetch(`${BASE_URL}users/${id}.json`);
+	return await response.json();
+};
+
+
+export {createUser ,getUsers, getUser };
