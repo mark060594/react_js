@@ -11,6 +11,8 @@ import UsersNew from './pages/UsersNew/index';
 import Home from "./pages/Home";
 import UserDetail from "./pages/UserDetails/index";
 import UsersList from "./pages/UserList/index"
+import UsersUpdate from "./pages/UsersUpdate";
+import UsersDetailContainer from "./pages/UsersDetailContainer";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +25,10 @@ ReactDOM.render(
             <Route path='/users' element={<Users />} >
                 <Route index  element={<UsersList />} />
                 <Route path='newUsers' element={<UsersNew />}/>
-                <Route path=":userID" element={<UserDetail />} />
+                <Route path=":userID" element={<UsersDetailContainer />}> 
+                  <Route index element={<UserDetail />} />
+                  <Route path="update" element={<UsersUpdate />} />
+                </Route>
             </Route>  
           </Route>
       </Routes>

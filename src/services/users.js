@@ -26,5 +26,32 @@ const getUser = async (id) => {
 	return await response.json();
 };
 
+const updateUser = async (id, data) => {
+	const response = await fetch(`${BASE_URL}users/${id}.json`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+		// body: data,
+	});
+	return await response.json();
+};
 
-export {createUser ,getUsers, getUser };
+const deleteUser = async (id) => {
+	const response = await fetch(`${BASE_URL}users/${id}.json`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	return await response.json();
+};
+
+
+
+
+
+
+
+export {createUser ,getUsers, getUser, updateUser, deleteUser };
